@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
   <form>
     <v-text-field
       v-model="login"
@@ -12,9 +12,13 @@
     ></v-text-field>
     <v-text-field
       v-model="password"
+      :append-icon="show1 ? 'on' : 'off'"
       :error-messages="passwordErrors"
       label="Пароль"
+      name="input-10-1"
       required
+      :type="show1 ? 'text' : 'password'"
+      @click:append="show1 = !show1"
       @input="$v.password.$touch()"
       @blur="$v.password.$touch()"
     ></v-text-field>
@@ -42,6 +46,7 @@ const checkPass = (value) => value === 'tdemo' || value === 'sdemo';
     },
 
     data: () => ({
+      show1: false,
       login: '',
       password: '',
       isAlert: false,
